@@ -15,6 +15,7 @@ nvimtree.setup({
     },
     filters = {
         custom = {
+            ".git",
             ".gitignore",
             "node_modules",
             "package-lock.json",
