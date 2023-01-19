@@ -12,6 +12,13 @@ nvimtree.setup({
     view = {
         side = "left",
         width = 30,
+    },
+    filters = {
+        custom = {
+            ".gitignore",
+            "node_modules",
+            "package-lock.json",
+        }
     }
 })
 
