@@ -25,11 +25,6 @@ map("n", "<M-Down>",    ":<C-u>silent! move+<CR>==")
 map("x", "<M-Up>",      ":<C-u>silent! '<,'>move-2<CR>gv=gv")
 map("x", "<M-Down>",    ":<C-u>silent! '<,'>move'>+<CR>gv=gv")
 
--- windows save like
-map("n", "<C-s>", ":w<CR>")
-map("i", "<C-s>", "<Esc>:w<CR>")
-map("v", "<C-s>", "<Esc>:w<CR>")
-
 -- toogle wrap
 map("n", "<M-z>", ":set nowrap!<CR>")
 map("i", "<M-z>", ":set nowrap!<CR>")
