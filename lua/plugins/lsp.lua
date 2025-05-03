@@ -7,33 +7,41 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 		},
 		config = function()
+			local servers = {
+				"bashls", -- Bash
+				"powershell_es", -- PowerShell
+				"clangd", -- C/C++
+				"phpactor", -- PHP
+				"html", -- HTML
+				"ts_ls", -- JavaScript/TypeScript
+				"cssls", -- CSS
+				"lemminx", -- XML
+				"jsonls", -- JSON
+				"emmet_ls", -- Emmet
+			}
 			require("mason").setup()
 			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"ts_ls", -- JavaScript/TypeScript
-					"html", -- HTML
-					"cssls", -- CSS
-					"phpactor", -- PHP
-					"clangd", -- C/C++
-					"lemminx", -- XML
-					"jsonls", -- JSON
-					"emmet_ls", -- Emmet
-				},
+				ensure_installed = servers,
 			})
 
 			local lspconfig = require("lspconfig")
-			local servers = {
-				"ts_ls",
-				"html",
-				"cssls",
-				"phpactor",
-				"clangd",
-				"lemminx",
-				"jsonls",
-			}
 			for _, server in ipairs(servers) do
 				lspconfig[server].setup({})
 			end
+
+			-- Go to definition
+			lspconfig.ts_ls.setup({
+				on_attach = function(client, bufnr)
+					-- Set up your key mappings for go to definition, etc.
+					vim.api.nvim_buf_set_keymap(
+						bufnr,
+						"n",
+						"gd",
+						"<Cmd>lua vim.lsp.buf.definition()<CR>",
+						{ noremap = true, silent = true }
+					)
+				end,
+			})
 
 			-- Emmet config
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -43,17 +51,13 @@ return {
 				capabilities = capabilities,
 				filetypes = {
 					"css",
-					"eruby",
 					"html",
+					"php",
 					"javascript",
 					"javascriptreact",
 					"less",
 					"sass",
 					"scss",
-					"svelte",
-					"pug",
-					"typescriptreact",
-					"vue",
 				},
 				init_options = {
 					html = {

@@ -16,18 +16,18 @@ return {
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
-					"lua",
-					"vim",
 					"bash",
-					"python",
-					"javascript",
-					"html",
-					"css",
-					"php",
-					"typescript",
-					"tsx",
+					"powershell",
 					"c",
 					"cpp",
+					"python",
+					"php",
+					"javascript",
+					"typescript",
+					"html",
+					"css",
+					"tsx",
+					"lua",
 				},
 				highlight = {
 					enable = true,
@@ -48,11 +48,12 @@ return {
 		config = function()
 			require("mason-tool-installer").setup({
 				ensure_installed = {
-					"prettier", -- JS, TS, HTML, CSS, JSON
-					"stylua", -- Lua
+					"shfmt", -- Bash
 					"clang-format", -- C, C++
 					"php-cs-fixer", -- PHP
+					"prettier", -- JS, TS, HTML, CSS, JSON
 					"xmlformatter", -- XML
+					"stylua", -- Lua
 				},
 				auto_update = true,
 				run_on_start = true,
@@ -78,16 +79,17 @@ return {
 		opts = {
 			-- Define your formatters
 			formatters_by_ft = {
-				lua = { "stylua" },
-				javascript = { "prettier" },
-				typescript = { "prettier" },
-				html = { "prettier" },
-				css = { "prettier" },
-				php = { "php_cs_fixer" },
+				bash = { "shfmt" },
 				c = { "clang_format" },
 				cpp = { "clang_format" },
+				php = { "php_cs_fixer" },
+				html = { "prettier" },
+				javascript = { "prettier" },
+				typescript = { "prettier" },
+				css = { "prettier" },
 				json = { "prettier" },
 				xml = { "xmlformat" },
+				lua = { "stylua" },
 			},
 			-- Set default options
 			default_format_opts = {
@@ -95,12 +97,6 @@ return {
 			},
 			-- Set up format-on-save
 			format_on_save = { timeout_ms = 500 },
-			-- Customize formatters
-			formatters = {
-				shfmt = {
-					prepend_args = { "-i", "2" },
-				},
-			},
 		},
 		init = function()
 			-- If you want the formatexpr, here is the place to set it
