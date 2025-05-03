@@ -8,6 +8,15 @@ return {
 		end,
 	},
 
+	{
+		"windwp/nvim-ts-autotag",
+		event = "InsertEnter",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		config = function()
+			require("nvim-ts-autotag").setup()
+		end,
+	},
+
 	-- Hightlighter
 	{
 		"nvim-treesitter/nvim-treesitter",
