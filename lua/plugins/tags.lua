@@ -1,10 +1,11 @@
 return {
 	-- Auto pairs {}[]
 	{
-		"windwp/nvim-autopairs",
+		"echasnovski/mini.pairs",
+		version = false,
 		event = "InsertEnter",
 		config = function()
-			require("nvim-autopairs").setup()
+			require("mini.pairs").setup()
 		end,
 	},
 
